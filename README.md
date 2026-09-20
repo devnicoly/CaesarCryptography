@@ -7,7 +7,7 @@
 <a name="português"></a>
 ## Português
 
-Projeto pessoal desenvolvido em linguagem C que implementa a **Cifra de César**, um dos métodos de criptografia mais antigos e conhecidos. O programa recebe uma chave numérica e um texto fornecido pelo usuário, e retorna o texto criptografado.
+Projeto pessoal desenvolvido em linguagem C que implementa a **Cifra de César**, um dos métodos de criptografia mais antigos e conhecidos. O programa exibe uma introdução explicativa, apresenta um menu interativo e, em seguida, solicita ao usuário uma chave numérica e um texto, retornando o texto criptografado.
 
 ---
 
@@ -29,19 +29,27 @@ Letras maiúsculas e minúsculas são preservadas, e caracteres que não são le
 
 O projeto é composto por dois arquivos:
 
-- **caesarCript.c**: Código-fonte do programa, escrito em linguagem C.
-- **caesarCript.exe**: Executável compilado (Windows), pronto para rodar sem precisar compilar.
+- **caesarCipher.c**: Código-fonte do programa, escrito em linguagem C.
+- **caesarCipher.exe**: Executável compilado (Windows), pronto para rodar sem precisar compilar.
 
 ---
 
 ### Como funciona
 
-1. O programa recebe uma **chave** (número inteiro) como argumento na linha de comando.
-2. O usuário digita o **texto simples** (plaintext) que deseja criptografar.
-3. O programa percorre cada caractere do texto:
-   - Se for uma letra, aplica o deslocamento da chave.
-   - Se não for letra, mantém o caractere original.
-4. O resultado é exibido como **ciphertext** (texto cifrado).
+1. O programa exibe uma **introdução** explicando o que é a Cifra de César e como ela funciona.
+2. Em seguida, mostra um **menu** com duas opções:
+   - `[1] Entendi, quero criptografar um texto`
+   - `[2] Sair`
+3. Se o usuário escolher a opção 1, o programa:
+   - Solicita uma **chave** (número inteiro).
+   - Valida se a chave contém apenas dígitos.
+   - Solicita o **texto** a ser criptografado.
+   - Percorre cada caractere do texto:
+     - Se for uma letra, aplica o deslocamento da chave.
+     - Se não for letra, mantém o caractere original.
+   - Exibe o resultado como **texto criptografado**.
+4. Se o usuário escolher a opção 2, o programa encerra.
+5. Qualquer outra opção exibe uma mensagem de erro e encerra o programa.
 
 ---
 
@@ -50,68 +58,89 @@ O projeto é composto por dois arquivos:
 #### Pré-requisitos
 
 - Ter um compilador de C instalado (GCC, Clang ou equivalente).
-- No Windows, pode-se usar o GCC via MinGW, ou o próprio executável já incluído (`caesarCript.exe`).
+- No Windows, pode-se usar o GCC via MinGW, ou o próprio executável já incluído (`caesarCipher.exe`).
 
 #### Compilar
 
 No terminal, dentro da pasta do projeto:
 
 ```bash
-gcc caesarCript.c -o caesarCript
+gcc caesarCipher.c -o caesarCipher
 ```
 
-Isso gera um executável chamado `caesarCript` (ou `caesarCript.exe` no Windows).
+Isso gera um executável chamado `caesarCipher` (ou `caesarCipher.exe` no Windows).
 
 #### Executar
 
 ```bash
-./caesarCript 3
+./caesarCipher
 ```
 
-O `3` é a chave da cifra. Você pode substituir por qualquer número inteiro positivo.
+No Windows:
+
+```bash
+caesarCipher.exe
+```
 
 ---
 
 ### Exemplo de uso
 
-Entrada:
+Ao rodar o programa, a saída será algo como:
 
 ```
-./caesarCript 3
-plaintext: Hello, World!
-```
+============================================================
+           CAESAR CIPHER
+============================================================
 
-Saída:
+The Caesar Cipher is one of the oldest and most well-known
+encryption techniques. It was used by the Roman emperor
+Julius Caesar to send secret messages to his generals.
 
-```
-ciphertext: Khoor, Zruog!
-```
+How it works:
+- Each letter in the text is shifted a fixed number of positions
+  in the alphabet. This number is called the KEY.
 
-Outro exemplo com chave 1:
+Example with key 3:
+  A becomes D
+  B becomes E
+  C becomes F
+  ...
+  Z wraps back to C
 
-```
-./caesarCript 1
-plaintext: abc XYZ
-ciphertext: bcd YZA
+Uppercase and lowercase letters are preserved, and
+characters such as numbers, spaces, and punctuation do not change.
+
+============================================================
+
+[1] Got it, I want to encrypt a text
+[2] Exit
+
+Enter the desired option: 1
+Enter the key (an integer): 3
+Enter the text to be encrypted: Hello, World!
+Encrypted text: Khoor, Zruog!
 ```
 
 ---
 
 ### Explicação do código
 
-O código está organizado em quatro funções principais:
+O código está organizado em cinco funções principais:
 
-- **`main`**: Verifica os argumentos, valida a chave, chama as funções de leitura e criptografia, e libera a memória.
+- **`show_introduction`**: Exibe a introdução explicando o que é a Cifra de César.
+- **`menu`**: Exibe o menu de opções e retorna a escolha do usuário.
 - **`is_valid_key`**: Verifica se a chave contém apenas dígitos (nenhum caractere não numérico).
-- **`get_plain_text`**: Lê o texto digitado pelo usuário, remove a quebra de linha e retorna a string.
+- **`get_plain_text`**: Lê o texto digitado pelo usuário e remove a quebra de linha.
 - **`encrypt_text`**: Percorre o texto e aplica o deslocamento da Cifra de César, preservando maiúsculas, minúsculas e caracteres especiais.
+- **`main`**: Coordena tudo — exibe a introdução, mostra o menu, pede a chave, pede o texto, chama a criptografia e exibe o resultado.
 
 ---
 
 ### Tecnologias utilizadas
 
 - Linguagem C
-- Bibliotecas padrão: `stdio.h`, `stdlib.h`, `ctype.h`, `string.h`
+- Bibliotecas padrão: `stdio.h`, `stdlib.h`, `string.h`, `ctype.h`
 
 ---
 
@@ -133,7 +162,7 @@ Este projeto está sob a licença MIT. Sinta-se livre para usar, estudar e modif
 <a name="english"></a>
 ## English
 
-Personal project developed in C that implements the **Caesar Cipher**, one of the oldest and most well-known encryption methods. The program takes a numeric key and a text provided by the user, and returns the encrypted text.
+Personal project developed in C that implements the **Caesar Cipher**, one of the oldest and most well-known encryption methods. The program displays an explanatory introduction, presents an interactive menu, and then asks the user for a numeric key and a text, returning the encrypted text.
 
 ---
 
@@ -155,19 +184,27 @@ Uppercase and lowercase letters are preserved, and non-letter characters (number
 
 The project consists of two files:
 
-- **caesarCript.c**: Source code of the program, written in C.
-- **caesarCript.exe**: Compiled executable (Windows), ready to run without compiling.
+- **caesarCipher.c**: Source code of the program, written in C.
+- **caesarCipher.exe**: Compiled executable (Windows), ready to run without compiling.
 
 ---
 
 ### How it works
 
-1. The program receives a **key** (integer) as a command-line argument.
-2. The user types the **plaintext** to be encrypted.
-3. The program goes through each character of the text:
-   - If it is a letter, it applies the key shift.
-   - If it is not a letter, it keeps the original character.
-4. The result is displayed as **ciphertext**.
+1. The program displays an **introduction** explaining what the Caesar Cipher is and how it works.
+2. Then it shows a **menu** with two options:
+   - `[1] Got it, I want to encrypt a text`
+   - `[2] Exit`
+3. If the user chooses option 1, the program:
+   - Asks for a **key** (integer).
+   - Validates that the key contains only digits.
+   - Asks for the **text** to be encrypted.
+   - Goes through each character of the text:
+     - If it is a letter, applies the key shift.
+     - If it is not a letter, keeps the original character.
+   - Displays the result as **encrypted text**.
+4. If the user chooses option 2, the program exits.
+5. Any other option displays an error message and exits the program.
 
 ---
 
@@ -176,68 +213,89 @@ The project consists of two files:
 #### Requirements
 
 - A C compiler installed (GCC, Clang, or equivalent).
-- On Windows, you can use GCC via MinGW, or the included executable (`caesarCript.exe`).
+- On Windows, you can use GCC via MinGW, or the included executable (`caesarCipher.exe`).
 
 #### Compile
 
 In the terminal, inside the project folder:
 
 ```bash
-gcc caesarCript.c -o caesarCript
+gcc caesarCipher.c -o caesarCipher
 ```
 
-This generates an executable named `caesarCript` (or `caesarCript.exe` on Windows).
+This generates an executable named `caesarCipher` (or `caesarCipher.exe` on Windows).
 
 #### Run
 
 ```bash
-./caesarCript 3
+./caesarCipher
 ```
 
-The `3` is the cipher key. You can replace it with any positive integer.
+On Windows:
+
+```bash
+caesarCipher.exe
+```
 
 ---
 
 ### Usage example
 
-Input:
+When running the program, the output will be something like:
 
 ```
-./caesarCript 3
-plaintext: Hello, World!
-```
+============================================================
+           CAESAR CIPHER
+============================================================
 
-Output:
+The Caesar Cipher is one of the oldest and most well-known
+encryption techniques. It was used by the Roman emperor
+Julius Caesar to send secret messages to his generals.
 
-```
-ciphertext: Khoor, Zruog!
-```
+How it works:
+- Each letter in the text is shifted a fixed number of positions
+  in the alphabet. This number is called the KEY.
 
-Another example with key 1:
+Example with key 3:
+  A becomes D
+  B becomes E
+  C becomes F
+  ...
+  Z wraps back to C
 
-```
-./caesarCript 1
-plaintext: abc XYZ
-ciphertext: bcd YZA
+Uppercase and lowercase letters are preserved, and
+characters such as numbers, spaces, and punctuation do not change.
+
+============================================================
+
+[1] Got it, I want to encrypt a text
+[2] Exit
+
+Enter the desired option: 1
+Enter the key (an integer): 3
+Enter the text to be encrypted: Hello, World!
+Encrypted text: Khoor, Zruog!
 ```
 
 ---
 
 ### Code explanation
 
-The code is organized into four main functions:
+The code is organized into five main functions:
 
-- **`main`**: Checks the arguments, validates the key, calls the reading and encryption functions, and frees memory.
+- **`show_introduction`**: Displays the introduction explaining what the Caesar Cipher is.
+- **`menu`**: Displays the options menu and returns the user's choice.
 - **`is_valid_key`**: Checks whether the key contains only digits (no non-numeric characters).
-- **`get_plain_text`**: Reads the text typed by the user, removes the newline, and returns the string.
+- **`get_plain_text`**: Reads the text typed by the user and removes the newline.
 - **`encrypt_text`**: Goes through the text and applies the Caesar Cipher shift, preserving uppercase, lowercase, and special characters.
+- **`main`**: Coordinates everything — displays the introduction, shows the menu, asks for the key, asks for the text, calls the encryption, and displays the result.
 
 ---
 
 ### Technologies used
 
 - C language
-- Standard libraries: `stdio.h`, `stdlib.h`, `ctype.h`, `string.h`
+- Standard libraries: `stdio.h`, `stdlib.h`, `string.h`, `ctype.h`
 
 ---
 
