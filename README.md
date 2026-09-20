@@ -1,4 +1,4 @@
-# Caesar Cipher
+# Caesar Cryptography
 
 [ Português ](#português) | [ English ](#english)
 
